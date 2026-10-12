@@ -30,3 +30,13 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Local agent and development environment state
+/.atl/
+/.codegraph/
+/.mcp.json
+/AGENTS.md
+/CLAUDE.md
+/.agents/skills/
+/.claude/skills/
+/skills/
