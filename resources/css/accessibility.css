@@ -1,0 +1,21 @@
+/* Keyboard and touch affordances complement the compact dashboard surfaces. */
+.btn { min-height: 44px; }
+.icon-button { width: 44px; height: 44px; }
+.assign-button { min-height: 36px; padding-inline: 9px; }
+.card-menu summary { min-width: 36px; min-height: 36px; }
+.kanban-column { border-radius: 18px; }
+.nav-label { color: var(--slate-300); }
+.ticket-code { color: var(--slate-600); }
+.ticket-excerpt, .ticket-requester time, .ticket-counters { color: var(--slate-600); }
+.metric-foot, .board-tip, .helper { color: var(--slate-600); }
+.filter-main select { min-width: 190px; }
+.column-empty p, .app-footer { color: var(--slate-600); }
+.load-more:hover { background-color: var(--slate-100); color: var(--slate-600); }
+@media (max-width: 1000px) { .filter-main select { min-width: 140px; } }
+@media (max-width: 760px) {
+    .assign-button, .card-menu summary, .page-link { min-height: 44px; }
+    .card-menu summary { min-width: 44px; }
+    .filter-main select { min-width: 120px; }
+    .view-switch button { min-height: 40px; }
+    .detail-tabs button { min-height: 44px; }
+}

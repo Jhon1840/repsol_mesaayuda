@@ -1,0 +1,79 @@
+.attachment-section-heading { margin-bottom: 18px; }
+.attachment-section-heading h2 { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.attachment-section-heading p { margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.attachment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 16px; align-items: start; }
+.attachment-card { min-width: 0; padding: 8px; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow-surface); }
+.attachment-thumbnail { position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; border: 0; border-radius: 8px; background: var(--slate-50); cursor: zoom-in; }
+.attachment-thumbnail img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.attachment-thumbnail img, .attachment-selected-thumbnail img, .image-viewer-stage img { outline: 1px solid oklch(0 0 0 / 0.1); outline-offset: -1px; }
+.attachment-preview-label { position: absolute; inset: auto 10px 10px auto; display: inline-flex; align-items: center; gap: 5px; min-height: 30px; padding: 5px 9px; border-radius: 6px; background: var(--surface); color: var(--ink); box-shadow: var(--shadow-surface); font-size: 12px; font-weight: 600; transition: background-color 150ms ease-out, color 150ms ease-out; }
+.attachment-preview-label svg { stroke-width: 2; }
+.attachment-thumbnail:hover .attachment-preview-label, .attachment-thumbnail:focus-visible .attachment-preview-label { background: var(--primary); color: #fff; }
+.attachment-preview-state { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; padding: 20px; color: var(--muted); font-size: 13px; text-align: center; }
+.attachment-document-cover { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 8px; background: var(--canvas); color: var(--primary); }
+.attachment-file-icon, .attachment-upload-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: var(--slate-100); color: var(--primary); flex-shrink: 0; }
+.attachment-type { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+.attachment-card-body { padding: 13px 8px 3px; }
+.attachment-card h3 { font-size: 14px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.attachment-file-meta { display: flex; align-items: center; gap: 6px; margin-top: 5px; color: var(--muted); font-size: 12px; }
+.attachment-card time { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.attachment-card-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px; margin-top: 12px; padding-top: 5px; border-top: 1px solid var(--line); }
+.attachment-card-actions .text-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 4px; color: var(--primary); font-size: 12px; }
+.attachment-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 26px 20px; border: 1px dashed var(--line); border-radius: var(--radius); text-align: center; background: var(--canvas); }
+.attachment-empty h2 { font-size: 15px; }
+.attachment-empty p { max-width: 340px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.attachment-upload-form { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+.attachment-dropzone { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 22px 16px 16px; border: 1px dashed var(--slate-200); border-radius: 14px; background: var(--canvas); text-align: center; transition: border-color 150ms ease-out, background-color 150ms ease-out; }
+.attachment-dropzone > strong { margin-top: 4px; font-size: 14px; }
+.attachment-dropzone .btn { margin: 7px 0 5px; }
+.attachment-dropzone:hover:not(.is-disabled), .attachment-dropzone:focus-within, .attachment-dropzone.is-dragging { border-color: var(--primary); background: var(--slate-100); }
+.attachment-dropzone.is-dragging { border-style: solid; }
+.attachment-dropzone.is-disabled { opacity: .65; }
+.attachment-dropzone .helper { font-size: 12px; line-height: 1.7; }
+.attachment-selection { margin-top: 16px; }
+.attachment-selection-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 10px; font-size: 12px; }
+.attachment-selection-summary > span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.attachment-selected-list { display: flex; flex-direction: column; gap: 8px; list-style: none; padding: 0; margin: 0 0 10px; }
+.attachment-selected-file { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 8px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+.attachment-selected-thumbnail { display: grid; place-items: center; width: 56px; height: 56px; overflow: hidden; border-radius: 8px; background: var(--canvas); color: var(--primary); flex-shrink: 0; }
+.attachment-selected-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+.attachment-selected-info { min-width: 0; flex: 1; }
+.attachment-selected-info strong { display: block; font-size: 13px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.attachment-selected-info > span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+.attachment-selected-file .icon-button { flex-shrink: 0; }
+.attachment-picker .icon-button:disabled { opacity: .5; cursor: default; }
+.attachment-selection-error { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; padding: 12px; border: 1px solid var(--danger); border-radius: 8px; background: var(--slate-50); color: var(--danger); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.attachment-selection-error svg { margin-top: 2px; flex-shrink: 0; }
+.attachment-upload-progress { display: grid; gap: 8px; margin-top: 16px; color: var(--muted); font-size: 13px; }
+.attachment-upload-actions { justify-content: space-between; gap: 12px; border: 0; padding-top: 0; margin-top: 18px; }
+.attachment-upload-actions > .helper { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+.image-viewer { width: min(1000px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 0; margin: auto; border: 0; border-radius: 16px; overflow: hidden; background: var(--surface); color: var(--ink); box-shadow: 0 24px 80px oklch(0 0 0 / .22); }
+.image-viewer[open] { display: flex; flex-direction: column; }
+.image-viewer::backdrop { background: oklch(0 0 0 / .65); }
+.image-viewer-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.image-viewer-title { min-width: 0; }
+.image-viewer-title h2 { font-size: 15px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.image-viewer-title p { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.image-viewer-header .icon-button { flex-shrink: 0; }
+.image-viewer-stage { position: relative; display: grid; place-items: center; height: min(64dvh, 620px); min-height: 120px; background: var(--slate-50); overflow: hidden; }
+.image-viewer-stage img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.image-viewer-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--line); flex-shrink: 0; }
+.image-viewer-navigation { display: flex; align-items: center; gap: 8px; }
+.image-viewer-navigation > span { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.image-viewer button, .attachment-picker button, .attachment-card button { transition: transform 150ms cubic-bezier(.2, 0, 0, 1), background-color 150ms ease-out, color 150ms ease-out; }
+.image-viewer .icon-button:active, .attachment-selected-file .icon-button:not(:disabled):active, .attachment-card button:active { transform: scale(.96); }
+.attachment-thumbnail:focus-visible, .attachment-gallery button:focus-visible, .attachment-gallery a:focus-visible, .attachment-picker button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+@media (max-width: 760px) {
+    .attachment-upload-actions { align-items: flex-start; flex-direction: column; }
+    .attachment-upload-actions .btn { width: 100%; justify-content: center; }
+    .image-viewer-header, .image-viewer-footer { padding: 12px; }
+    .image-viewer-footer > .helper { display: none; }
+    .image-viewer-footer { justify-content: flex-end; }
+    .image-viewer-navigation { margin-right: auto; }
+    .image-viewer-stage { height: 58dvh; }
+    .image-viewer-footer .btn { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .image-viewer button, .attachment-picker button, .attachment-card button, .attachment-dropzone, .attachment-preview-label { transition: none; }
+    .image-viewer .icon-button:active, .attachment-selected-file .icon-button:not(:disabled):active, .attachment-card button:active { transform: none; }
+}

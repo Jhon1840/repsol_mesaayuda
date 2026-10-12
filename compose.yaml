@@ -1,0 +1,70 @@
+name: mesa-ayuda
+services:
+  laravel.test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: mesa-ayuda-app:local
+    ports:
+      - '${APP_PORT:-8088}:8000'
+    environment:
+      LARAVEL_SAIL: 1
+    volumes:
+      - .:/var/www/html
+      - vendor:/var/www/html/vendor
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'php', '-r', "exit(@file_get_contents('http://127.0.0.1:8000/up') === false ? 1 : 0);"]
+      interval: 15s
+      timeout: 30s
+      retries: 5
+    networks: [sail]
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: '${DB_DATABASE:-helpdesk}'
+      MYSQL_USER: '${DB_USERNAME:-sail}'
+      MYSQL_PASSWORD: '${DB_PASSWORD:-password}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+    volumes:
+      - sail-mysql:/var/lib/mysql
+      - ./docker/mysql-testing.sql:/docker-entrypoint-initdb.d/testing.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h localhost -p"$$MYSQL_ROOT_PASSWORD" --silent']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks: [sail]
+  worker:
+    image: mesa-ayuda-app:local
+    command: ['php', 'artisan', 'queue:work', '--sleep=2', '--tries=3', '--timeout=90']
+    volumes:
+      - .:/var/www/html
+      - vendor:/var/www/html/vendor
+    depends_on:
+      laravel.test:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [sail]
+  vite:
+    image: node:22-alpine
+    working_dir: /var/www/html
+    command: ['npm', 'run', 'dev', '--', '--host=0.0.0.0']
+    profiles: [dev]
+    ports:
+      - '${VITE_PORT:-5173}:5173'
+    volumes:
+      - .:/var/www/html
+      - node-modules:/var/www/html/node_modules
+    networks: [sail]
+networks:
+  sail:
+    driver: bridge
+volumes:
+  sail-mysql:
+  node-modules:
+  vendor:
+
